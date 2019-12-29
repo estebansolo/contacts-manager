@@ -1,9 +1,23 @@
 import os
 import sys
 import csv
+import click
+from clients import commands as clients_commands
 
-clients = []
 CLIENTS_TABLE = "clients.csv"
+
+@click.group()
+@click.pass_context
+def cli(ctx):
+  ctx.obj = {
+    "clients_table": CLIENTS_TABLE
+  }
+
+cli.add_command(clients_commands.all)
+
+"""
+clients = []
+
 CLIENT_SCHEMA = ["name", "company", "email", "position"]
 
 def _initialize_clients_from_storage():
@@ -76,9 +90,10 @@ def _get_client_field(field_name, is_new=False):
     sys.exit()
   
   return field
-
+"""
 
 if __name__ == '__main__':
+  """
   _initialize_clients_from_storage()
   _print_welcome()
 
@@ -119,3 +134,5 @@ if __name__ == '__main__':
     print("Invalid Command")
 
   _save_clients_to_storage()
+  """
+  cli()
