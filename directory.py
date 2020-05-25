@@ -9,7 +9,7 @@ def cli():
     pass
 
 
-@cli.command(name="list")
+@cli.command(name="list", help="Show my contact list")
 @decorators.title
 def list_contacts():
     """ Show my contact list """
@@ -36,11 +36,11 @@ def create_contact(name, lastname, email, phone):
         click.secho("There was a problem trying to insert the contact", fg="red")
 
 
-@cli.command(name="delete")
+@cli.command(name="delete", help="Delete a contact by id")
 @click.argument("cid", required=True, type=int)
 @decorators.title
 def delete_contact(cid):
-    """ Update a contact by id """
+    """ Delete a contact by id """
     contacts_ctrl = ContactsController()
     contact = contacts_ctrl.get_contact(cid)
     if not contact:
@@ -54,7 +54,7 @@ def delete_contact(cid):
         print("Yes")
 
 
-@cli.command(name="update")
+@cli.command(name="update", help="Update a contact by id")
 @click.argument("cid", required=True, type=int)
 @decorators.title
 def update_contact(cid):
